@@ -82,7 +82,7 @@ export default function BenchmarksPage() {
         // Fallback to local data if fetch fails
         try {
           const fallbackData = await import("@/public/benches/current.json");
-          setData(fallbackData.default as BenchmarkData);
+          setData(fallbackData.default as unknown as BenchmarkData);
         } catch (fallbackErr) {
           console.error("Failed to load fallback data:", fallbackErr);
         }
