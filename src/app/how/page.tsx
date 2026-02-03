@@ -54,7 +54,7 @@ export default function HowPage() {
         // Fallback to local data if fetch fails
         try {
           const fallbackData = await import("@/public/benches/current.json");
-          setBenchmarkData(fallbackData.default as BenchmarkData);
+          setBenchmarkData(fallbackData.default as unknown as BenchmarkData);
         } catch (fallbackErr) {
           console.error("Failed to load fallback data:", fallbackErr);
         }

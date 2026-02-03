@@ -396,7 +396,7 @@ export default function FAQPage() {
       } catch {
         try {
           const fallback = await import("@/public/benches/current.json");
-          setBenchmarkData(fallback.default as BenchmarkData);
+          setBenchmarkData(fallback.default as unknown as BenchmarkData);
         } catch {
           // keep null, FAQ will use static answers
         }
