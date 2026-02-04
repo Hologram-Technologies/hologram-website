@@ -1,28 +1,28 @@
 {
-  "timestamp": "2026-02-03T03:15:38.435382+00:00",
-  "date": "2026-02-03",
+  "timestamp": "2026-02-04T03:13:04.345938+00:00",
+  "date": "2026-02-04",
   "architecture": "x86_64-windows",
   "os": "windows-latest",
-  "rust_version": "rustc 1.95.0-nightly (f60a0f1bc 2026-02-02)",
+  "rust_version": "rustc 1.95.0-nightly (366a1b93e 2026-02-03)",
   "commit_sha": "b429683df28b6f5f45bf4548d79924a1679af91b",
   "commit_ref": "refs/heads/main",
   "benchmarks": {
     "cross_backend_fma/scalar/64": {
-      "time_ns": 177,
+      "time_ns": 87,
       "time_ms": 0.0,
-      "stddev_ns": 656,
-      "stddev_ms": 0.001
+      "stddev_ns": 1,
+      "stddev_ms": 0.0
     },
     "cross_backend_fma/avx2/64": {
-      "time_ns": 25,
+      "time_ns": 9,
       "time_ms": 0.0,
-      "stddev_ns": 5,
+      "stddev_ns": 0,
       "stddev_ms": 0.0
     },
     "cross_backend_fma/scalar/256": {
-      "time_ns": 323,
+      "time_ns": 321,
       "time_ms": 0.0,
-      "stddev_ns": 12,
+      "stddev_ns": 2,
       "stddev_ms": 0.0
     },
     "cross_backend_fma/avx2/256": {
@@ -34,182 +34,182 @@
     "cross_backend_fma/scalar/1024": {
       "time_ns": 1263,
       "time_ms": 0.001,
-      "stddev_ns": 39,
+      "stddev_ns": 24,
       "stddev_ms": 0.0
     },
     "cross_backend_fma/avx2/1024": {
-      "time_ns": 119,
+      "time_ns": 94,
       "time_ms": 0.0,
-      "stddev_ns": 34,
+      "stddev_ns": 1,
       "stddev_ms": 0.0
     },
     "cross_backend_fma/scalar/4096": {
-      "time_ns": 5024,
+      "time_ns": 5010,
       "time_ms": 0.005,
-      "stddev_ns": 477,
+      "stddev_ns": 61,
       "stddev_ms": 0.0
     },
     "cross_backend_fma/avx2/4096": {
-      "time_ns": 334,
+      "time_ns": 333,
       "time_ms": 0.0,
       "stddev_ns": 7,
       "stddev_ms": 0.0
     },
     "cross_backend_fma/scalar/16384": {
-      "time_ns": 21974,
-      "time_ms": 0.022,
-      "stddev_ns": 5923,
-      "stddev_ms": 0.006
-    },
-    "cross_backend_fma/avx2/16384": {
-      "time_ns": 1404,
-      "time_ms": 0.001,
-      "stddev_ns": 93,
+      "time_ns": 20029,
+      "time_ms": 0.02,
+      "stddev_ns": 264,
       "stddev_ms": 0.0
     },
+    "cross_backend_fma/avx2/16384": {
+      "time_ns": 1374,
+      "time_ms": 0.001,
+      "stddev_ns": 1139,
+      "stddev_ms": 0.001
+    },
     "cross_backend_fma/scalar/65536": {
-      "time_ns": 83235,
-      "time_ms": 0.083,
-      "stddev_ns": 2196,
-      "stddev_ms": 0.002
+      "time_ns": 83539,
+      "time_ms": 0.084,
+      "stddev_ns": 23109,
+      "stddev_ms": 0.023
     },
     "cross_backend_fma/avx2/65536": {
-      "time_ns": 5732,
+      "time_ns": 5938,
       "time_ms": 0.006,
-      "stddev_ns": 941,
+      "stddev_ns": 1340,
       "stddev_ms": 0.001
     },
     "cross_backend_add/scalar/64": {
-      "time_ns": 77,
-      "time_ms": 0.0,
-      "stddev_ns": 9,
-      "stddev_ms": 0.0
-    },
-    "cross_backend_add/avx2/64": {
-      "time_ns": 8,
+      "time_ns": 81,
       "time_ms": 0.0,
       "stddev_ns": 2,
       "stddev_ms": 0.0
     },
-    "cross_backend_add/scalar/256": {
-      "time_ns": 316,
+    "cross_backend_add/avx2/64": {
+      "time_ns": 7,
       "time_ms": 0.0,
-      "stddev_ns": 24,
+      "stddev_ns": 0,
+      "stddev_ms": 0.0
+    },
+    "cross_backend_add/scalar/256": {
+      "time_ns": 284,
+      "time_ms": 0.0,
+      "stddev_ns": 83,
       "stddev_ms": 0.0
     },
     "cross_backend_add/avx2/256": {
-      "time_ns": 23,
+      "time_ns": 20,
       "time_ms": 0.0,
-      "stddev_ns": 1,
+      "stddev_ns": 0,
       "stddev_ms": 0.0
     },
     "cross_backend_add/scalar/1024": {
-      "time_ns": 1286,
+      "time_ns": 1210,
       "time_ms": 0.001,
-      "stddev_ns": 105,
+      "stddev_ns": 210,
       "stddev_ms": 0.0
     },
     "cross_backend_add/avx2/1024": {
-      "time_ns": 88,
+      "time_ns": 79,
       "time_ms": 0.0,
-      "stddev_ns": 10,
+      "stddev_ns": 12,
       "stddev_ms": 0.0
     },
     "cross_backend_add/scalar/4096": {
-      "time_ns": 5425,
+      "time_ns": 5145,
       "time_ms": 0.005,
-      "stddev_ns": 725,
-      "stddev_ms": 0.001
+      "stddev_ns": 3099,
+      "stddev_ms": 0.003
     },
     "cross_backend_add/avx2/4096": {
-      "time_ns": 323,
-      "time_ms": 0.0,
-      "stddev_ns": 61,
+      "time_ns": 768,
+      "time_ms": 0.001,
+      "stddev_ns": 174,
       "stddev_ms": 0.0
     },
     "cross_backend_add/scalar/16384": {
-      "time_ns": 20776,
-      "time_ms": 0.021,
-      "stddev_ns": 2126,
-      "stddev_ms": 0.002
+      "time_ns": 25512,
+      "time_ms": 0.026,
+      "stddev_ns": 37727,
+      "stddev_ms": 0.038
     },
     "cross_backend_add/avx2/16384": {
-      "time_ns": 1334,
+      "time_ns": 1177,
       "time_ms": 0.001,
-      "stddev_ns": 349,
+      "stddev_ns": 284,
       "stddev_ms": 0.0
     },
     "cross_backend_add/scalar/65536": {
-      "time_ns": 72466,
-      "time_ms": 0.072,
-      "stddev_ns": 2293,
-      "stddev_ms": 0.002
+      "time_ns": 76897,
+      "time_ms": 0.077,
+      "stddev_ns": 24047,
+      "stddev_ms": 0.024
     },
     "cross_backend_add/avx2/65536": {
-      "time_ns": 5080,
-      "time_ms": 0.005,
-      "stddev_ns": 1767,
-      "stddev_ms": 0.002
+      "time_ns": 8782,
+      "time_ms": 0.009,
+      "stddev_ns": 470,
+      "stddev_ms": 0.0
     },
     "throughput_by_size/scalar/1024": {
-      "time_ns": 1263,
+      "time_ns": 1422,
       "time_ms": 0.001,
-      "stddev_ns": 14,
+      "stddev_ns": 127,
       "stddev_ms": 0.0
     },
     "throughput_by_size/avx2/1024": {
-      "time_ns": 93,
+      "time_ns": 103,
       "time_ms": 0.0,
-      "stddev_ns": 4,
+      "stddev_ns": 9,
       "stddev_ms": 0.0
     },
     "throughput_by_size/scalar/4096": {
-      "time_ns": 7021,
-      "time_ms": 0.007,
-      "stddev_ns": 900,
-      "stddev_ms": 0.001
+      "time_ns": 5632,
+      "time_ms": 0.006,
+      "stddev_ns": 383,
+      "stddev_ms": 0.0
     },
     "throughput_by_size/avx2/4096": {
-      "time_ns": 335,
+      "time_ns": 382,
       "time_ms": 0.0,
-      "stddev_ns": 13,
+      "stddev_ns": 88,
       "stddev_ms": 0.0
     },
     "throughput_by_size/scalar/16384": {
-      "time_ns": 20084,
-      "time_ms": 0.02,
-      "stddev_ns": 389,
-      "stddev_ms": 0.0
+      "time_ns": 22898,
+      "time_ms": 0.023,
+      "stddev_ns": 2766,
+      "stddev_ms": 0.003
     },
     "throughput_by_size/avx2/16384": {
-      "time_ns": 1372,
-      "time_ms": 0.001,
-      "stddev_ns": 296,
+      "time_ns": 1500,
+      "time_ms": 0.002,
+      "stddev_ns": 63,
       "stddev_ms": 0.0
     },
     "throughput_by_size/scalar/65536": {
-      "time_ns": 147870,
-      "time_ms": 0.148,
-      "stddev_ns": 2656,
-      "stddev_ms": 0.003
+      "time_ns": 92456,
+      "time_ms": 0.092,
+      "stddev_ns": 152041,
+      "stddev_ms": 0.152
     },
     "throughput_by_size/avx2/65536": {
-      "time_ns": 5253,
-      "time_ms": 0.005,
-      "stddev_ns": 430,
-      "stddev_ms": 0.0
+      "time_ns": 5794,
+      "time_ms": 0.006,
+      "stddev_ns": 602,
+      "stddev_ms": 0.001
     },
     "throughput_by_size/scalar/262144": {
-      "time_ns": 321720,
-      "time_ms": 0.322,
-      "stddev_ns": 4723,
-      "stddev_ms": 0.005
+      "time_ns": 361371,
+      "time_ms": 0.361,
+      "stddev_ns": 58506,
+      "stddev_ms": 0.059
     },
     "throughput_by_size/avx2/262144": {
-      "time_ns": 41076,
-      "time_ms": 0.041,
-      "stddev_ns": 3190,
-      "stddev_ms": 0.003
+      "time_ns": 21572,
+      "time_ms": 0.022,
+      "stddev_ns": 7431,
+      "stddev_ms": 0.007
     }
   },
   "summary": {
