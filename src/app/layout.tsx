@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "@/styles/globals.css";
 import { Navigation } from "@/components/navigation";
@@ -20,17 +20,18 @@ export const metadata: Metadata = {
   title: "Hologram - Geometric computation",
   description:
     "A shared language for universal data. Building open source, community-led infrastructure.",
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 5,
-    userScalable: true,
-    viewportFit: "cover",
-  },
   // Performance optimizations
   other: {
     'format-detection': 'telephone=no',
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  userScalable: true,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({
