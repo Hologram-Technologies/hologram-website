@@ -2,40 +2,18 @@
 
 import { useState, useEffect } from "react";
 import { ExternalLink, FileJson, Clock } from "lucide-react";
-import { BenchmarkData, formatNanoseconds, normalizeBenchmarkJson, BENCHMARK_API_URL, GITHUB_REPO_URL } from "@/lib/benchmark-utils";
+import { BenchmarkData, formatNanoseconds, fetchBenchmarkData, BENCHMARK_API_URL, GITHUB_REPO_URL } from "@/lib/benchmark-utils";
 
 export function HowItPerforms() {
   const [data, setData] = useState<BenchmarkData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    async function fetchBenchmarks() {
-      try {
-        setLoading(true);
-        const response = await fetch(BENCHMARK_API_URL, {
-          cache: "no-store",
-        });
-        
-        if (!response.ok) {
-          throw new Error(`Failed to fetch: ${response.status}`);
-        }
-        
-        const json = await response.json();
-        setData(normalizeBenchmarkJson(json));
-      } catch (err) {
-        console.error("Failed to load benchmarks:", err);
-        try {
-          const fallbackData = await import("@/public/benches/current.json");
-          setData(normalizeBenchmarkJson(fallbackData.default));
-        } catch (fallbackErr) {
-          console.error("Failed to load fallback data:", fallbackErr);
-        }
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchBenchmarks();
+    setLoading(true);
+    fetchBenchmarkData()
+      .then(setData)
+      .catch((err) => console.error("Failed to load benchmarks:", err))
+      .finally(() => setLoading(false));
   }, []);
 
   // Get specific benchmarks

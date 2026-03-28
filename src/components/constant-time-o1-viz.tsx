@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BenchmarkData, normalizeBenchmarkJson, BENCHMARK_API_URL } from "@/lib/benchmark-utils";
+import { fetchBenchmarkData } from "@/lib/benchmark-utils";
 
 // Benchmark IDs for different operation chain lengths
 // These are example IDs - adjust based on actual benchmark data structure
@@ -37,15 +37,7 @@ export function ConstantTimeO1Viz() {
   useEffect(() => {
     async function fetchBenchmarks() {
       try {
-        const response = await fetch(BENCHMARK_API_URL, {
-          cache: "no-store",
-        });
-        
-        if (!response.ok) {
-          throw new Error(`Failed to fetch: ${response.status}`);
-        }
-        
-        const json = normalizeBenchmarkJson(await response.json());
+        const json = await fetchBenchmarkData();
         
         // Try to extract relevant benchmarks
         const chartData: ChartData[] = [];

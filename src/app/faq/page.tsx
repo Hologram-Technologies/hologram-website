@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Section, SectionHeader } from "@/components/section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Math } from "@/components/math";
-import { BenchmarkData, formatNanoseconds, normalizeBenchmarkJson, BENCHMARK_API_URL } from "@/lib/benchmark-utils";
+import { BenchmarkData, formatNanoseconds, fetchBenchmarkData } from "@/lib/benchmark-utils";
 import {
   HelpCircle,
   Code2,
@@ -386,22 +386,9 @@ export default function FAQPage() {
   const [benchmarkData, setBenchmarkData] = useState<BenchmarkData | null>(null);
 
   useEffect(() => {
-    async function fetchBenchmarks() {
-      try {
-        const response = await fetch(BENCHMARK_API_URL, { cache: "no-store" });
-        if (!response.ok) throw new Error(`Failed to fetch: ${response.status}`);
-        const json = await response.json();
-        setBenchmarkData(normalizeBenchmarkJson(json));
-      } catch {
-        try {
-          const fallback = await import("@/public/benches/current.json");
-          setBenchmarkData(normalizeBenchmarkJson(fallback.default));
-        } catch {
-          // keep null, FAQ will use static answers
-        }
-      }
-    }
-    fetchBenchmarks();
+    fetchBenchmarkData()
+      .then(setBenchmarkData)
+      .catch(() => { /* keep null, FAQ will use static answers */ });
   }, []);
 
   const performanceAnswers = getPerformanceAnswers(benchmarkData);

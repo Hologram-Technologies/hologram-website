@@ -527,30 +527,31 @@ export function normalizeBenchmarkJson(json: unknown): BenchmarkData {
 }
 
 /**
- * Fetch benchmark data from the API and local, returning whichever is newer.
+ * Fetch benchmark data from the API and local bundled data, returning whichever is newer.
  */
 export async function fetchBenchmarkData(): Promise<BenchmarkData> {
-  const localData = await import("@/public/benches/current.json")
-    .then((m) => normalizeBenchmarkJson(m.default))
-    .catch(() => null);
+  // Fetch both sources in parallel
+  const [apiResult, localResult] = await Promise.allSettled([
+    fetch(BENCHMARK_API_URL, { cache: "no-store" }).then(async (r) => {
+      if (!r.ok) throw new Error(`API ${r.status}`);
+      return normalizeBenchmarkJson(await r.json());
+    }),
+    fetch("/benches/current.json", { cache: "no-store" }).then(async (r) => {
+      if (!r.ok) throw new Error(`Local ${r.status}`);
+      return normalizeBenchmarkJson(await r.json());
+    }),
+  ]);
 
-  let apiData: BenchmarkData | null = null;
-  try {
-    const response = await fetch(BENCHMARK_API_URL, { cache: "no-store" });
-    if (response.ok) {
-      const json = await response.json();
-      apiData = normalizeBenchmarkJson(json);
-    }
-  } catch {
-    // API unavailable — use local
-  }
+  const apiData = apiResult.status === "fulfilled" ? apiResult.value : null;
+  const localData = localResult.status === "fulfilled" ? localResult.value : null;
 
   if (apiData && localData) {
-    // Use whichever has the newer timestamp
     const apiTime = new Date(apiData.timestamp).getTime();
     const localTime = new Date(localData.timestamp).getTime();
     return localTime > apiTime ? localData : apiData;
   }
 
-  return apiData ?? localData ?? (() => { throw new Error("No benchmark data available"); })();
+  const data = apiData ?? localData;
+  if (!data) throw new Error("No benchmark data available");
+  return data;
 }

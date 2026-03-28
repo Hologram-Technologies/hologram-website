@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ExternalLink, FileJson, GitCommit, Clock } from "lucide-react";
-import { BenchmarkData, RawBenchmark, normalizeBenchmarkJson, BENCHMARK_API_URL, GITHUB_REPO_URL } from "@/lib/benchmark-utils";
+import { BenchmarkData, RawBenchmark, fetchBenchmarkData, BENCHMARK_API_URL, GITHUB_REPO_URL } from "@/lib/benchmark-utils";
 
 const GITHUB_COMMIT_URL_BASE = `${GITHUB_REPO_URL}/commit/`;
 
@@ -44,28 +44,12 @@ export function LiveO1Metrics() {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchBenchmarks() {
-      try {
-        setLoading(true);
-        setError(null);
-        const response = await fetch(BENCHMARK_API_URL, {
-          cache: "no-store",
-        });
-        
-        if (!response.ok) {
-          throw new Error(`Failed to fetch: ${response.status}`);
-        }
-        
-        const json = await response.json();
-        setData(normalizeBenchmarkJson(json));
-      } catch (err) {
-        setError(err instanceof Error ? err.message : "Failed to load benchmarks");
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchBenchmarks();
+    setLoading(true);
+    setError(null);
+    fetchBenchmarkData()
+      .then(setData)
+      .catch((err) => setError(err instanceof Error ? err.message : "Failed to load benchmarks"))
+      .finally(() => setLoading(false));
   }, []);
 
   // Extract metrics
