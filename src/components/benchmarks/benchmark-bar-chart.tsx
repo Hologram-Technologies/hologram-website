@@ -8,12 +8,14 @@ interface BenchmarkBarChartProps {
   data: ProcessedBenchmark[];
   title: string;
   className?: string;
+  showStdDev?: boolean;
 }
 
 export function BenchmarkBarChart({
   data,
   title,
   className = "",
+  showStdDev = false,
 }: BenchmarkBarChartProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -75,6 +77,16 @@ export function BenchmarkBarChart({
                     <span className="bar-confidence-line" />
                   </div>
                 </div>
+                {showStdDev && benchmark.std_dev_ns > 0 && (
+                  <div
+                    className="bar-stddev-whisker"
+                    style={{
+                      left: `${Math.max(0, ((benchmark.mean_ns - benchmark.std_dev_ns) / maxValue) * 100)}%`,
+                      width: `${Math.min(100, ((benchmark.std_dev_ns * 2) / maxValue) * 100)}%`,
+                    }}
+                    title={`±${formatNanoseconds(benchmark.std_dev_ns)} std dev`}
+                  />
+                )}
               </div>
               <div className="bar-chart-value">
                 <div className="flex items-baseline justify-end gap-1">

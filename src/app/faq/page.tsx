@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Section, SectionHeader } from "@/components/section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Math } from "@/components/math";
-import { BenchmarkData, formatNanoseconds } from "@/lib/benchmark-utils";
+import { BenchmarkData, formatNanoseconds, normalizeBenchmarkJson, BENCHMARK_API_URL } from "@/lib/benchmark-utils";
 import {
   HelpCircle,
   Code2,
@@ -21,7 +21,6 @@ import {
   ExternalLink,
 } from "lucide-react";
 
-const BENCHMARK_API_URL = "https://gethologram.ai/benches/current.json";
 
 /** Build Performance FAQ answers from latest benchmark data (same source as /benchmarks). */
 function getPerformanceAnswers(data: BenchmarkData | null): (string | null)[] {
@@ -392,11 +391,11 @@ export default function FAQPage() {
         const response = await fetch(BENCHMARK_API_URL, { cache: "no-store" });
         if (!response.ok) throw new Error(`Failed to fetch: ${response.status}`);
         const json = await response.json();
-        setBenchmarkData(json as BenchmarkData);
+        setBenchmarkData(normalizeBenchmarkJson(json));
       } catch {
         try {
           const fallback = await import("@/public/benches/current.json");
-          setBenchmarkData(fallback.default as unknown as BenchmarkData);
+          setBenchmarkData(normalizeBenchmarkJson(fallback.default));
         } catch {
           // keep null, FAQ will use static answers
         }

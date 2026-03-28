@@ -2,10 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { ExternalLink, FileJson, GitCommit, Clock } from "lucide-react";
-import { BenchmarkData, RawBenchmark } from "@/lib/benchmark-utils";
+import { BenchmarkData, RawBenchmark, normalizeBenchmarkJson, BENCHMARK_API_URL, GITHUB_REPO_URL } from "@/lib/benchmark-utils";
 
-const BENCHMARK_API_URL = "https://gethologram.ai/benches/current.json";
-const GITHUB_COMMIT_URL_BASE = "https://github.com/<ORG>/<REPO>/commit/";
+const GITHUB_COMMIT_URL_BASE = `${GITHUB_REPO_URL}/commit/`;
 
 interface MetricData {
   median: number;
@@ -58,7 +57,7 @@ export function LiveO1Metrics() {
         }
         
         const json = await response.json();
-        setData(json as BenchmarkData);
+        setData(normalizeBenchmarkJson(json));
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load benchmarks");
       } finally {

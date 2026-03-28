@@ -1,9 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BenchmarkData } from "@/lib/benchmark-utils";
-
-const BENCHMARK_API_URL = "https://gethologram.ai/benches/current.json";
+import { BenchmarkData, normalizeBenchmarkJson, BENCHMARK_API_URL } from "@/lib/benchmark-utils";
 
 // Benchmark IDs for different operation chain lengths
 // These are example IDs - adjust based on actual benchmark data structure
@@ -47,7 +45,7 @@ export function ConstantTimeO1Viz() {
           throw new Error(`Failed to fetch: ${response.status}`);
         }
         
-        const json = await response.json() as BenchmarkData;
+        const json = normalizeBenchmarkJson(await response.json());
         
         // Try to extract relevant benchmarks
         const chartData: ChartData[] = [];

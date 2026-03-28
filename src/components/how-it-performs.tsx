@@ -2,10 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { ExternalLink, FileJson, Clock } from "lucide-react";
-import { BenchmarkData, formatNanoseconds } from "@/lib/benchmark-utils";
-
-const BENCHMARK_API_URL = "https://gethologram.ai/benches/current.json";
-const GITHUB_REPO_URL = "https://github.com/UOR-Foundation/hologram";
+import { BenchmarkData, formatNanoseconds, normalizeBenchmarkJson, BENCHMARK_API_URL, GITHUB_REPO_URL } from "@/lib/benchmark-utils";
 
 export function HowItPerforms() {
   const [data, setData] = useState<BenchmarkData | null>(null);
@@ -24,13 +21,12 @@ export function HowItPerforms() {
         }
         
         const json = await response.json();
-        setData(json as BenchmarkData);
+        setData(normalizeBenchmarkJson(json));
       } catch (err) {
         console.error("Failed to load benchmarks:", err);
-        // Fallback to local data if fetch fails
         try {
           const fallbackData = await import("@/public/benches/current.json");
-          setData(fallbackData.default as unknown as BenchmarkData);
+          setData(normalizeBenchmarkJson(fallbackData.default));
         } catch (fallbackErr) {
           console.error("Failed to load fallback data:", fallbackErr);
         }

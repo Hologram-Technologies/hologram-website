@@ -12,7 +12,7 @@ import { SinglePassExecutionViz } from "@/components/single-pass-execution-viz";
 import { ConstantTimeO1Viz } from "@/components/constant-time-o1-viz";
 import { CodeBlock } from "@/components/code-block";
 import { Button } from "@/components/ui/button";
-import { BenchmarkData, formatNanoseconds } from "@/lib/benchmark-utils";
+import { BenchmarkData, formatNanoseconds, normalizeBenchmarkJson, BENCHMARK_API_URL } from "@/lib/benchmark-utils";
 import {
   Code2,
   Zap,
@@ -27,8 +27,6 @@ import {
   Brain,
   FileCode,
 } from "lucide-react";
-
-const BENCHMARK_API_URL = "https://gethologram.ai/benches/current.json";
 
 export default function HowPage() {
   const [selectedLanguage, setSelectedLanguage] = useState<string>("python");
@@ -48,13 +46,13 @@ export default function HowPage() {
         }
         
         const json = await response.json();
-        setBenchmarkData(json as BenchmarkData);
+        setBenchmarkData(normalizeBenchmarkJson(json));
       } catch (err) {
         console.error("Failed to load benchmarks:", err);
         // Fallback to local data if fetch fails
         try {
           const fallbackData = await import("@/public/benches/current.json");
-          setBenchmarkData(fallbackData.default as unknown as BenchmarkData);
+          setBenchmarkData(normalizeBenchmarkJson(fallbackData.default));
         } catch (fallbackErr) {
           console.error("Failed to load fallback data:", fallbackErr);
         }

@@ -110,6 +110,42 @@
   border-radius: 9999px;
 }
 
+/* Std dev whisker */
+.bar-stddev-whisker {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 0.125rem;
+  background: hsl(var(--foreground) / 0.35);
+  border-radius: 9999px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.bar-stddev-whisker::before,
+.bar-stddev-whisker::after {
+  content: "";
+  position: absolute;
+  top: -0.25rem;
+  width: 0.125rem;
+  height: 0.625rem;
+  background: hsl(var(--foreground) / 0.35);
+  border-radius: 9999px;
+}
+
+.bar-stddev-whisker::before {
+  left: 0;
+}
+
+.bar-stddev-whisker::after {
+  right: 0;
+}
+
+.bar-chart-row:hover .bar-stddev-whisker {
+  opacity: 1;
+}
+
 .bar-chart-value {
   width: 6rem;
   text-align: right;
