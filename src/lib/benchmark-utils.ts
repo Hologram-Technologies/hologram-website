@@ -527,31 +527,13 @@ export function normalizeBenchmarkJson(json: unknown): BenchmarkData {
 }
 
 /**
- * Fetch benchmark data from the API and local bundled data, returning whichever is newer.
+ * Fetch benchmark data with cache-busting to avoid stale CDN responses.
  */
 export async function fetchBenchmarkData(): Promise<BenchmarkData> {
-  // Fetch both sources in parallel
-  const [apiResult, localResult] = await Promise.allSettled([
-    fetch(BENCHMARK_API_URL, { cache: "no-store" }).then(async (r) => {
-      if (!r.ok) throw new Error(`API ${r.status}`);
-      return normalizeBenchmarkJson(await r.json());
-    }),
-    fetch("/benches/current.json", { cache: "no-store" }).then(async (r) => {
-      if (!r.ok) throw new Error(`Local ${r.status}`);
-      return normalizeBenchmarkJson(await r.json());
-    }),
-  ]);
-
-  const apiData = apiResult.status === "fulfilled" ? apiResult.value : null;
-  const localData = localResult.status === "fulfilled" ? localResult.value : null;
-
-  if (apiData && localData) {
-    const apiTime = new Date(apiData.timestamp).getTime();
-    const localTime = new Date(localData.timestamp).getTime();
-    return localTime > apiTime ? localData : apiData;
+  const cacheBuster = `?v=${Date.now()}`;
+  const response = await fetch(`/benches/current.json${cacheBuster}`);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch benchmarks: ${response.status}`);
   }
-
-  const data = apiData ?? localData;
-  if (!data) throw new Error("No benchmark data available");
-  return data;
+  return normalizeBenchmarkJson(await response.json());
 }
