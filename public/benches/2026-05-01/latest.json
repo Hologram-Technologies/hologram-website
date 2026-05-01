@@ -1,18 +1,18 @@
 {
-  "sha": "b248926914d6474cf752c02c04269bcd3ea5779b",
-  "timestamp": "2026-05-01T18:57:25Z",
+  "sha": "25539999ed79e7af6ab0c864001601f6929f3f4b",
+  "timestamp": "2026-05-01T19:03:49Z",
   "benchmarks": [
     {
       "name": "archive::write(50_nodes)",
-      "mean_ns": 2250.021,
-      "median_ns": 2238.038,
-      "std_dev_ns": 87.258
+      "mean_ns": 2281.766,
+      "median_ns": 2268.643,
+      "std_dev_ns": 57.462
     },
     {
       "name": "archive::write(5_nodes)",
-      "mean_ns": 446.934,
-      "median_ns": 440.172,
-      "std_dev_ns": 38.093
+      "mean_ns": 442.673,
+      "median_ns": 440.118,
+      "std_dev_ns": 13.803
     }
   ]
 }
