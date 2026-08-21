@@ -34,7 +34,7 @@ jobs:
       - name: Add static route entries and SPA fallback
         run: |
           cp dist/index.html dist/404.html
-          for route in team product technology; do
+          for route in team; do
             mkdir -p "dist/$route"
             cp dist/index.html "dist/$route/index.html"
           done

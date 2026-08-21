@@ -8,7 +8,7 @@ import thesisImage from "@/assets/manifesto-campus.png";
 import vonNeumannBottleneckImage from "@/assets/von-neumann-bottleneck.png";
 import geometricComputeImage from "@/assets/hologram-geometric-compute.png";
 import metricsImage from "@/assets/hologram-metrics.png";
-import { HologramMark } from "@/components/site-chrome";
+import { OverlayLogo } from "@/components/site-chrome";
 
 
 
@@ -338,35 +338,29 @@ export function ThesisOverlay({ open, onClose }: Props) {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-[#0A0A0A] pt-[env(safe-area-inset-top)]"
+      className="fixed inset-0 z-50 bg-white"
       role="dialog"
       aria-modal="true"
       aria-label="Compute Thesis: The Age of Geometric Intelligence"
     >
+      <OverlayLogo />
+
+      <button
+        type="button"
+        onClick={onClose}
+        aria-label="Close"
+        className="fixed right-4 top-[calc(env(safe-area-inset-top)+1rem)] z-30 inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/80 text-white transition-colors hover:bg-black md:right-8 md:top-8"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+          <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.6" />
+        </svg>
+      </button>
+
       <div
         ref={scrollRef}
         className="h-full overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]"
       >
-        <header className="sticky top-0 z-50 flex items-center justify-between bg-[#0A0A0A] px-5 py-4 sm:px-6 md:px-10">
-          <Link to="/" aria-label="Hologram" className="flex items-center gap-2 text-white">
-            <HologramMark className="h-8 w-8 shrink-0 sm:h-10 sm:w-10" />
-            <span className="truncate text-[18px] font-semibold tracking-[0.22em] sm:text-[24px] sm:tracking-[0.3em]">
-              HOLOGRAM
-            </span>
-          </Link>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Close"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 text-white transition-colors hover:bg-white/20 sm:h-11 sm:w-11"
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-              <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.6" />
-            </svg>
-          </button>
-        </header>
-
-        <header className="bg-[#0A0A0A] px-5 pb-14 pt-8 sm:px-6 sm:pb-20 sm:pt-12 md:px-0 md:py-28">
+        <header className="bg-[#0A0A0A] px-5 pb-14 pt-[calc(env(safe-area-inset-top)+4.5rem)] sm:px-6 sm:pb-20 sm:pt-24 md:px-0 md:py-28">
           <h2 className="mx-auto w-full max-w-[640px] font-sans text-[clamp(1.875rem,7.5vw,4rem)] font-semibold leading-[1.14] tracking-[-0.01em] text-white md:px-0">
             <span className="text-[#E93B01]">Compute Thesis:</span>
             <br />
@@ -375,27 +369,27 @@ export function ThesisOverlay({ open, onClose }: Props) {
         </header>
 
         <article className="mx-auto w-full max-w-[640px] px-5 pb-24 pt-10 sm:px-6 sm:pt-16 md:px-0 md:pb-32 md:pt-20">
-          <p className="text-[1.0625rem] italic leading-[1.65] tracking-[0.01em] text-[#E5E5E5] sm:text-[1.1875rem]">
+          <p className="text-[1.0625rem] italic leading-[1.65] tracking-[0.01em] text-[#1A1A1A] sm:text-[1.1875rem]">
             tl;dr: AI inference is becoming a subscription that most organisations cannot afford to keep paying. The cost is not in the models but in the repeated recomputation of identical work, an architectural debt that traces back to the Von Neumann memory bottleneck. Hologram replaces positional addressing with content-addressed geometric computation, turning every repeat operation into a verifiable lookup and making efficient, private and governable AI possible on the hardware already owned.
           </p>
 
-          <h2 className="mt-12 mb-4 text-[1.4375rem] font-semibold leading-[1.22] tracking-[-0.015em] text-white sm:mt-14 sm:mb-5 sm:text-[1.75rem]">
+          <h2 className="mt-12 mb-4 text-[1.4375rem] font-semibold leading-[1.22] tracking-[-0.015em] text-[#0A0A0A] sm:mt-14 sm:mb-5 sm:text-[1.75rem]">
             Inference is now a unit economics problem
           </h2>
 
-          <p className="text-[1.0625rem] leading-[1.65] tracking-[0.01em] text-[#E5E5E5] sm:text-[1.1875rem]">
+          <p className="text-[1.0625rem] leading-[1.65] tracking-[0.01em] text-[#1A1A1A] sm:text-[1.1875rem]">
             AI has moved from lab research to real-world deployment. What remains is scale: the same prompts, the same matrix multiplications, the same answers served millions of times, across every rack, every continent.
           </p>
 
-          <p className="mt-6 text-[1.0625rem] leading-[1.65] tracking-[0.01em] text-[#E5E5E5] sm:text-[1.1875rem]">
+          <p className="mt-6 text-[1.0625rem] leading-[1.65] tracking-[0.01em] text-[#1A1A1A] sm:text-[1.1875rem]">
             Every output is metered the same way: one inference call. In 2024 data centres used roughly 415 TWh about 1.5 % of global electricity. The IEA expects that figure to more than double to ~945 TWh by 2030, more than Japan consumes today. A typical AI facility already draws as much power as 100,000 homes; the largest now under construction will draw twenty times that.<Ref n={1} />
           </p>
 
-          <p className="mt-6 text-[1.0625rem] leading-[1.65] tracking-[0.01em] text-[#E5E5E5] sm:text-[1.1875rem]">
+          <p className="mt-6 text-[1.0625rem] leading-[1.65] tracking-[0.01em] text-[#1A1A1A] sm:text-[1.1875rem]">
             Capability sets the price the world will pay. Deployment asks a harder question: what does each answer cost to manufacture in watts, silicon and time at planetary scale? The data centre is no longer a research site. It is a factory. Factories are judged on unit economics.
           </p>
 
-          <p className="mt-6 text-[1.0625rem] leading-[1.65] tracking-[0.01em] text-[#E5E5E5] sm:text-[1.1875rem]">
+          <p className="mt-6 text-[1.0625rem] leading-[1.65] tracking-[0.01em] text-[#1A1A1A] sm:text-[1.1875rem]">
             Most of that power is not spent discovering new answers. It is spent answering the same questions again. The true cost of intelligence is not novelty. It is repetition.
           </p>
 
@@ -413,14 +407,14 @@ export function ThesisOverlay({ open, onClose }: Props) {
           <div className="mt-10">
             {sections.map((s) => (
               <section key={s.id} id={s.id}>
-                <h2 className="mt-12 mb-4 text-[1.4375rem] font-semibold leading-[1.22] tracking-[-0.015em] text-white sm:mt-14 sm:mb-5 sm:text-[1.75rem]">
+                <h2 className="mt-12 mb-4 text-[1.4375rem] font-semibold leading-[1.22] tracking-[-0.015em] text-[#0A0A0A] sm:mt-14 sm:mb-5 sm:text-[1.75rem]">
                   {s.heading}
                 </h2>
                 <div>
                   {s.paragraphs.map((p, i) => (
                     <p
                       key={i}
-                      className="mb-6 text-[1.0625rem] leading-[1.65] tracking-[0.01em] text-[#E5E5E5] last:mb-0 sm:text-[1.1875rem]"
+                      className="mb-6 text-[1.0625rem] leading-[1.65] tracking-[0.01em] text-[#1A1A1A] last:mb-0 sm:text-[1.1875rem]"
                     >
                       {p}
                     </p>
@@ -443,10 +437,10 @@ export function ThesisOverlay({ open, onClose }: Props) {
           </div>
 
           <section className="mt-24 border-t border-[#E3DCD7] pt-10">
-            <h2 className="text-[1.25rem] font-semibold leading-[1.25] tracking-[-0.01em] text-white">
+            <h2 className="text-[1.25rem] font-semibold leading-[1.25] tracking-[-0.01em] text-[#0A0A0A]">
               Join our team
             </h2>
-            <p className="mt-4 text-[1.0625rem] leading-[1.65] tracking-[0.01em] text-[#E5E5E5] sm:text-[1.1875rem]">
+            <p className="mt-4 text-[1.0625rem] leading-[1.65] tracking-[0.01em] text-[#1A1A1A] sm:text-[1.1875rem]">
               We are building a new paradigm for compute. If this resonates, we would love to hear from you.
             </p>
             <Link
@@ -459,7 +453,7 @@ export function ThesisOverlay({ open, onClose }: Props) {
           </section>
 
           <section className="mt-24 border-t border-[#E3DCD7] pt-10">
-            <h2 className="text-[1.25rem] font-semibold leading-[1.25] tracking-[-0.01em] text-white">
+            <h2 className="text-[1.25rem] font-semibold leading-[1.25] tracking-[-0.01em] text-[#0A0A0A]">
               Notes and sources
             </h2>
             <ol className="mt-6">
@@ -467,9 +461,9 @@ export function ThesisOverlay({ open, onClose }: Props) {
                 <li
                   key={note.n}
                   id={`note-${note.n}`}
-                  className="mb-5 text-[0.9375rem] leading-[1.6] tracking-[0.01em] text-[#5C4438] last:mb-0"
+                  className="mb-5 text-[0.9375rem] leading-[1.6] tracking-[0.01em] text-[#5A5A5A] last:mb-0"
                 >
-                  <span className="mr-2 font-semibold text-white">{note.n}.</span>
+                  <span className="mr-2 font-semibold text-[#0A0A0A]">{note.n}.</span>
                   {note.text}{" "}
                   <a
                     href={note.url}
