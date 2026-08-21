@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Hologram">
+  <title>Hologram</title>
+  <rect width="64" height="64" rx="5" fill="#231f1d"/>
+  <g fill="#fff">
+  <circle cx="42.44" cy="14.48" r="2.29"/>
+  <circle cx="47.76" cy="16.96" r="2.29"/>
+  <circle cx="21.40" cy="19.49" r="2.29"/>
+  <circle cx="42.46" cy="19.49" r="2.29"/>
+  <circle cx="47.76" cy="21.96" r="2.29"/>
+  <circle cx="16.19" cy="22.02" r="2.29"/>
+  <circle cx="21.40" cy="24.47" r="2.29"/>
+  <circle cx="42.46" cy="24.49" r="2.29"/>
+  <circle cx="16.19" cy="26.97" r="2.29"/>
+  <circle cx="37.24" cy="26.94" r="2.29"/>
+  <circle cx="47.73" cy="26.94" r="2.29"/>
+  <circle cx="21.43" cy="29.47" r="2.29"/>
+  <circle cx="31.97" cy="29.44" r="2.29"/>
+  <circle cx="42.49" cy="29.47" r="2.29"/>
+  <circle cx="26.70" cy="31.95" r="2.29"/>
+  <circle cx="37.24" cy="31.95" r="2.29"/>
+  <circle cx="47.73" cy="31.95" r="2.29"/>
+  <circle cx="16.19" cy="31.97" r="2.29"/>
+  <circle cx="21.40" cy="34.53" r="2.29"/>
+  <circle cx="31.97" cy="34.53" r="2.29"/>
+  <circle cx="42.49" cy="34.56" r="2.29"/>
+  <circle cx="16.16" cy="37.00" r="2.29"/>
+  <circle cx="26.73" cy="37.00" r="2.29"/>
+  <circle cx="47.73" cy="37.00" r="2.29"/>
+  <circle cx="21.46" cy="39.48" r="2.29"/>
+  <circle cx="42.49" cy="39.51" r="2.29"/>
+  <circle cx="16.13" cy="42.01" r="2.29"/>
+  <circle cx="47.76" cy="42.01" r="2.29"/>
+  <circle cx="21.40" cy="44.46" r="2.29"/>
+  <circle cx="42.49" cy="44.46" r="2.29"/>
+  <circle cx="16.19" cy="46.96" r="2.29"/>
+  <circle cx="21.40" cy="49.44" r="2.29"/>
+  </g>
+</svg>

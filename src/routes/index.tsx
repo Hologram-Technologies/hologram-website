@@ -9,16 +9,15 @@ import earthPoster from "@/assets/earth-poster.jpg";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Hologram, fast energy efficient verifiable compute" },
+      { title: "Hologram" },
       {
         name: "description",
-        content:
-          "Hologram is a universal lossless runtime. Every byte gets one self verified address, so computation becomes a fast, energy efficient, verifiable lookup.",
+        content: "Reimagining compute for fast, energy-efficient and verifiable AI.",
       },
-      { property: "og:title", content: "Hologram, verifiable virtual compute" },
+      { property: "og:title", content: "Hologram" },
       {
         property: "og:description",
-        content: "One verified address per byte. Repeat AI work collapses into lookups.",
+        content: "Reimagining compute for fast, energy-efficient and verifiable AI.",
       },
     ],
   }),

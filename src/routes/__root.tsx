@@ -9,9 +9,8 @@ import {
 
 import { SiteFooter, SiteHeader } from "@/components/site-chrome";
 
-const SITE_TITLE = "Hologram — Reimagining compute for fast, energy-efficient and verifiable AI";
-const SITE_DESCRIPTION =
-  "Hologram is a universal lossless runtime. Every byte gets one self-verified address, so computation becomes a fast, energy-efficient, verifiable lookup.";
+const SITE_TITLE = "Hologram";
+const SITE_DESCRIPTION = "Reimagining compute for fast, energy-efficient and verifiable AI.";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -22,6 +21,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:description", content: SITE_DESCRIPTION },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: "https://gethologram.ai/og.png?v=2" },
+      { name: "twitter:image", content: "https://gethologram.ai/og.png?v=2" },
     ],
   }),
   component: RootComponent,
