@@ -58,7 +58,7 @@ export function OverlayBar({
       ref={barRef}
       className={`sticky top-0 z-50 flex h-[calc(4rem+env(safe-area-inset-top))] items-center justify-between px-5 pt-[env(safe-area-inset-top)] transition-colors duration-300 sm:px-6 md:px-10 ${
         light
-          ? "border-b border-black/10 bg-white/90 backdrop-blur-md"
+          ? "border-b border-black/10 bg-white"
           : "border-b border-transparent bg-[#0A0A0A]"
       }`}
     >
