@@ -29,7 +29,7 @@ function Index() {
   const [thesisOpen, setThesisOpen] = useState(false);
 
   return (
-    <section className="relative flex h-full w-full items-end overflow-hidden pt-16 pb-8 sm:items-center sm:py-20">
+    <section className="relative flex h-full w-full items-end overflow-hidden pt-16 pb-16 sm:items-center sm:py-20">
       {/* Earth footage */}
       <div
         aria-hidden
@@ -70,8 +70,8 @@ function Index() {
         />
       </div>
 
-      <div className="relative mx-auto mt-4 flex w-full max-w-[1400px] flex-col items-start px-5 sm:px-6 md:mt-8 md:px-10">
-        <h1 className="max-w-[16ch] text-[clamp(2.5rem,10.5vw,5rem)] font-bold leading-[1.06] tracking-[-0.03em] sm:max-w-[28ch] sm:leading-[1.02] md:text-[clamp(2.5rem,5.8vw,5rem)]">
+      <div className="relative mx-auto mt-6 flex w-full max-w-[1400px] flex-col items-start px-5 sm:mt-10 sm:px-6 md:mt-14 md:px-10">
+        <h1 className="max-w-[16ch] text-[clamp(2.3rem,9.6vw,4.6rem)] font-bold leading-[1.06] tracking-[-0.03em] sm:max-w-[28ch] sm:leading-[1.02] md:text-[clamp(2.3rem,5.4vw,4.6rem)]">
           <span style={{ color: "#E93B01" }}>Reimagining compute</span>
           <br className="hidden sm:block" />{" "}
           for fast, energy-efficient
@@ -82,10 +82,10 @@ function Index() {
         <button
           type="button"
           onClick={() => setThesisOpen(true)}
-          className="mt-8 inline-flex min-h-11 items-center gap-3 border border-white/30 px-6 py-3 text-[18px] text-white transition-colors hover:bg-white/10 sm:px-7 sm:py-3.5 sm:text-[20px] md:mt-12"
+          className="mt-7 inline-flex min-h-11 items-center gap-3 border border-white/30 px-5 py-2.5 text-[16px] text-white transition-colors hover:bg-white/10 sm:px-6 sm:py-3 sm:text-[18px] md:mt-10"
         >
           OUR THESIS
-          <ArrowRight size={18} strokeWidth={1.5} />
+          <ArrowRight size={16} strokeWidth={1.5} />
         </button>
       </div>
 
