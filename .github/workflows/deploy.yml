@@ -31,8 +31,13 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Add SPA fallback
-        run: cp dist/index.html dist/404.html
+      - name: Add static route entries and SPA fallback
+        run: |
+          cp dist/index.html dist/404.html
+          for route in team product technology; do
+            mkdir -p "dist/$route"
+            cp dist/index.html "dist/$route/index.html"
+          done
 
       - uses: actions/configure-pages@v5
 
