@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-import { Link } from "@tanstack/react-router";
-
-import { OverlayLogo } from "@/components/site-chrome";
+import { OverlayBar } from "@/components/site-chrome";
 
 
 
@@ -259,6 +257,7 @@ function Section({ title, items }: { title: string; items: string[] }) {
 export function CareersOverlay() {
   const [openSlug, setOpenSlug] = useState<string | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
   const active = roles.find((r) => r.slug === openSlug) ?? null;
 
   useEffect(() => {
@@ -282,26 +281,18 @@ export function CareersOverlay() {
       aria-modal="true"
       aria-label="Careers at Hologram"
     >
-      <OverlayLogo />
-
-      <Link
-        to="/"
-        aria-label="Close"
-        className="fixed right-4 top-[calc(env(safe-area-inset-top)+1rem)] z-30 inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/80 text-white transition-colors hover:bg-black md:right-8 md:top-8"
-      >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-          <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.6" />
-        </svg>
-      </Link>
-
-
       <div
         ref={scrollRef}
         className="h-full overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]"
       >
+        <OverlayBar scrollRef={scrollRef} heroRef={heroRef} closeTo="/" />
+
         {active ? (
           <>
-            <header className="bg-[#0A0A0A] px-5 pb-14 pt-[calc(env(safe-area-inset-top)+4.5rem)] sm:px-6 sm:pb-20 sm:pt-24 md:px-0 md:py-28">
+            <header
+              ref={heroRef}
+              className="bg-[#0A0A0A] px-5 pb-14 pt-10 sm:px-6 sm:pb-20 sm:pt-16 md:px-0 md:pb-28 md:pt-20"
+            >
               <div className="mx-auto w-full max-w-[640px]">
                 <button
                   type="button"
@@ -352,7 +343,10 @@ export function CareersOverlay() {
           </>
         ) : (
           <>
-            <header className="bg-[#0A0A0A] px-5 pb-16 pt-[calc(env(safe-area-inset-top)+4.5rem)] sm:px-6 sm:pb-24 sm:pt-24 md:px-0 md:py-32">
+            <header
+              ref={heroRef}
+              className="bg-[#0A0A0A] px-5 pb-16 pt-10 sm:px-6 sm:pb-24 sm:pt-16 md:px-0 md:pb-32 md:pt-24"
+            >
               <div className="mx-auto w-full max-w-[860px] md:px-8">
                 <p className="mb-4 text-[0.9375rem] font-medium uppercase tracking-[0.12em] text-[#E93B01] sm:text-[1rem]">
                   Join the team

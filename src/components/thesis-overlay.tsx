@@ -8,7 +8,7 @@ import thesisImage from "@/assets/manifesto-campus.png";
 import vonNeumannBottleneckImage from "@/assets/von-neumann-bottleneck.png";
 import geometricComputeImage from "@/assets/hologram-geometric-compute.png";
 import metricsImage from "@/assets/hologram-metrics.png";
-import { OverlayLogo } from "@/components/site-chrome";
+import { OverlayBar } from "@/components/site-chrome";
 
 
 
@@ -324,6 +324,7 @@ const sections: {
 
 export function ThesisOverlay({ open, onClose }: Props) {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     if (!open) return;
@@ -343,24 +344,16 @@ export function ThesisOverlay({ open, onClose }: Props) {
       aria-modal="true"
       aria-label="Compute Thesis: The Age of Geometric Intelligence"
     >
-      <OverlayLogo />
-
-      <button
-        type="button"
-        onClick={onClose}
-        aria-label="Close"
-        className="fixed right-4 top-[calc(env(safe-area-inset-top)+1rem)] z-30 inline-flex h-11 w-11 items-center justify-center rounded-full bg-black/80 text-white transition-colors hover:bg-black md:right-8 md:top-8"
-      >
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
-          <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.6" />
-        </svg>
-      </button>
-
       <div
         ref={scrollRef}
         className="h-full overflow-y-auto overscroll-contain [-webkit-overflow-scrolling:touch]"
       >
-        <header className="bg-[#0A0A0A] px-5 pb-14 pt-[calc(env(safe-area-inset-top)+4.5rem)] sm:px-6 sm:pb-20 sm:pt-24 md:px-0 md:py-28">
+        <OverlayBar scrollRef={scrollRef} heroRef={heroRef} onClose={onClose} />
+
+        <header
+          ref={heroRef}
+          className="bg-[#0A0A0A] px-5 pb-14 pt-10 sm:px-6 sm:pb-20 sm:pt-16 md:px-0 md:pb-28 md:pt-20"
+        >
           <h2 className="mx-auto w-full max-w-[640px] font-sans text-[clamp(1.875rem,7.5vw,4rem)] font-semibold leading-[1.14] tracking-[-0.01em] text-white md:px-0">
             <span className="text-[#E93B01]">Compute Thesis:</span>
             <br />

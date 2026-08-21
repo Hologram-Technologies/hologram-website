@@ -1,3 +1,5 @@
+import { useEffect, useRef, useState } from "react";
+import type { RefObject } from "react";
 import { Link } from "@tanstack/react-router";
 import hologramIcon from "@/assets/holo-H-white.png";
 
@@ -5,21 +7,85 @@ export function HologramMark({ className = "" }: { className?: string }) {
   return <img src={hologramIcon} alt="" className={className} />;
 }
 
-export function OverlayLogo() {
+/**
+ * The bar an overlay page wears: it sits in the scroll flow, so nothing ever
+ * runs underneath it. Over the dark headline block it is the same near-black
+ * and reads as one piece; once that block scrolls past, it turns to white with
+ * a hairline and the mark inverts to ink.
+ */
+export function OverlayBar({
+  scrollRef,
+  heroRef,
+  onClose,
+  closeTo,
+}: {
+  scrollRef: RefObject<HTMLDivElement | null>;
+  heroRef: RefObject<HTMLElement | null>;
+  onClose?: () => void;
+  closeTo?: string;
+}) {
+  const barRef = useRef<HTMLDivElement>(null);
+  const [light, setLight] = useState(false);
+
+  useEffect(() => {
+    const scroller = scrollRef.current;
+    if (!scroller) return;
+    const measure = () => {
+      const hero = heroRef.current;
+      const barHeight = barRef.current?.offsetHeight ?? 64;
+      setLight(hero ? hero.getBoundingClientRect().bottom <= barHeight : false);
+    };
+    measure();
+    scroller.addEventListener("scroll", measure, { passive: true });
+    window.addEventListener("resize", measure);
+    return () => {
+      scroller.removeEventListener("scroll", measure);
+      window.removeEventListener("resize", measure);
+    };
+  }, [scrollRef, heroRef]);
+
+  const closeClass = `inline-flex h-10 w-10 items-center justify-center rounded-full transition-colors sm:h-11 sm:w-11 ${
+    light ? "bg-black/80 text-white hover:bg-black" : "bg-white/10 text-white hover:bg-white/20"
+  }`;
+  const closeIcon = (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+      <path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  );
+
   return (
-    <Link
-      to="/"
-      aria-label="Hologram"
-      className="group/logo fixed left-4 top-[calc(env(safe-area-inset-top)+1rem)] z-40 flex items-center gap-2 mix-blend-difference sm:left-6 md:left-10 md:top-8"
+    <div
+      ref={barRef}
+      className={`sticky top-0 z-50 flex h-[calc(4rem+env(safe-area-inset-top))] items-center justify-between px-5 pt-[env(safe-area-inset-top)] transition-colors duration-300 sm:px-6 md:px-10 ${
+        light
+          ? "border-b border-black/10 bg-white/90 backdrop-blur-md"
+          : "border-b border-transparent bg-[#0A0A0A]"
+      }`}
     >
-      <div className="relative">
-        <HologramMark className="h-8 w-8 shrink-0 sm:h-10 sm:w-10 md:h-11 md:w-11" />
-        <div className="absolute inset-0 rounded-full bg-signal/30 blur-2xl opacity-0 transition-opacity duration-500 group-hover/logo:opacity-100" />
-      </div>
-      <span className="truncate text-[18px] font-semibold tracking-[0.22em] text-white transition-all duration-300 group-hover/logo:tracking-[0.32em] sm:text-[24px] sm:tracking-[0.3em] md:text-[30px]">
-        HOLOGRAM
-      </span>
-    </Link>
+      <Link
+        to="/"
+        aria-label="Hologram"
+        onClick={onClose}
+        className={`flex items-center gap-2 transition-colors ${light ? "text-[#0A0A0A]" : "text-white"}`}
+      >
+        <HologramMark
+          className={`h-8 w-8 shrink-0 transition-[filter] duration-300 sm:h-9 sm:w-9 ${light ? "invert" : ""}`}
+        />
+        <span className="truncate text-[18px] font-semibold tracking-[0.22em] sm:text-[22px] sm:tracking-[0.28em]">
+          HOLOGRAM
+        </span>
+      </Link>
+
+      {closeTo ? (
+        <Link to={closeTo} aria-label="Close" className={closeClass}>
+          {closeIcon}
+        </Link>
+      ) : (
+        <button type="button" onClick={onClose} aria-label="Close" className={closeClass}>
+          {closeIcon}
+        </button>
+      )}
+    </div>
   );
 }
 
