@@ -28,7 +28,7 @@ function Index() {
   const [thesisOpen, setThesisOpen] = useState(false);
 
   return (
-    <section className="relative flex h-full w-full items-end overflow-hidden pt-16 pb-32 sm:items-center sm:py-20">
+    <section className="relative flex h-full w-full items-end overflow-hidden pt-16 pb-48 sm:items-center sm:py-20">
       {/* Earth footage */}
       <div
         aria-hidden
