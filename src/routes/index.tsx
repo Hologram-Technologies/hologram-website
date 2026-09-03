@@ -28,7 +28,7 @@ function Index() {
   const [thesisOpen, setThesisOpen] = useState(false);
 
   return (
-    <section className="relative flex h-full w-full items-end overflow-hidden pt-16 pb-16 sm:items-center sm:py-20">
+    <section className="relative flex h-full w-full items-end overflow-hidden pt-16 pb-32 sm:items-center sm:py-20">
       {/* Earth footage */}
       <div
         aria-hidden
@@ -70,11 +70,16 @@ function Index() {
       </div>
 
       <div className="relative mx-auto mt-6 flex w-full max-w-[1400px] flex-col items-start px-5 sm:mt-10 sm:px-6 md:mt-14 md:px-10">
-        <h1 className="max-w-[16ch] text-[clamp(2.3rem,9.6vw,4.6rem)] font-bold leading-[1.06] tracking-[-0.03em] sm:max-w-[28ch] sm:leading-[1.02] md:text-[clamp(2.3rem,5.4vw,4.6rem)]">
-          <span style={{ color: "#E93B01" }}>Reimagining compute</span>
-          <br className="hidden sm:block" />{" "}
-          for fast, energy-efficient
-          <br className="hidden sm:block" />{" "}
+        <h1 className="max-w-[20ch] text-[clamp(2.3rem,9.6vw,4.6rem)] font-bold leading-[1.06] tracking-[-0.03em] sm:max-w-[28ch] sm:leading-[1.02] md:text-[clamp(2.3rem,5.4vw,4.6rem)]">
+          <span style={{ color: "#E93B01" }}>
+            Reimagining
+            <br />
+            compute
+          </span>{" "}
+          for fast,
+          <br />
+          energy-efficient
+          <br />
           and verifiable AI.
         </h1>
 
